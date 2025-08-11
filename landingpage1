@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CreativePrep — High School Made Simple</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-start: #0a1a4f;
+      --bg-mid:   #4b2f7f;
+      --bg-end:   #e94ea8;
+      --text:     #f6f7fb;
+      --muted:    #cbd3ff;
+      --accent:   #9d6bff;
+      --btn:      #ffffff;
+      --btn-text: #0b1020;
+      --card:     rgba(255,255,255,0.06);
+      --stroke:   rgba(255,255,255,0.12);
+      --shadow:   0 10px 30px rgba(0,0,0,0.35);
+      --radius:   16px;
+      --pad:      clamp(16px, 2vw, 28px);
+      --maxw:     1100px;
+    }
+
+    html, body { height: 100%; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 10% -10%, #1f2a6a55, transparent 60%),
+                  radial-gradient(1000px 800px at 90% 10%, #e94ea822, transparent 55%),
+                  linear-gradient(135deg, var(--bg-start), var(--bg-mid) 55%, var(--bg-end));
+      background-attachment: fixed;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: linear-gradient(180deg, rgba(5,10,30,0.55), rgba(5,10,30,0.25));
+      border-bottom: 1px solid var(--stroke);
+    }
+    .nav-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 14px var(--pad);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 18px;
+      align-items: center;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .logo {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: conic-gradient(from 180deg, #7b5cff, #d94eff, #7b5cff);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+    }
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: 160ms ease;
+    }
+    .nav-links a:hover, .nav-links a:focus-visible {
+      color: var(--text);
+      background: var(--card);
+      outline: none;
+    }
+    .nav-cta a {
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #fff;
+      color: #0a0f1f;
+      box-shadow: var(--shadow);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+    .nav-cta a:hover { transform: translateY(-1px); box-shadow: 0 12px 38px rgba(0,0,0,0.45); }
+
+    .hero {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: clamp(48px, 6vw, 86px) var(--pad) 64px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--stroke);
+      border-radius: calc(var(--radius) * 1.25);
+      padding: clamp(28px, 4vw, 54px);
+      box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+      background: rgba(255,255,255,0.06);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+    }
+    .hero h1 {
+      margin: 12px 0 12px;
+      font-size: clamp(34px, 5.2vw, 64px);
+      line-height: 1.06;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+    }
+    .hero p {
+      margin: 0 0 26px;
+      font-size: clamp(16px, 2.2vw, 20px);
+      line-height: 1.5;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .btn-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      box-shadow: var(--shadow);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #ffffff, #e9e9ff);
+      color: var(--btn-text);
+    }
+    .btn-primary:hover { transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+    }
+    .btn-secondary:hover { transform: translateY(-1px); }
+
+    section.block {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 60px var(--pad);
+      border-top: 1px solid var(--stroke);
+    }
+    section.block h2 {
+      margin: 0 0 10px;
+      font-size: clamp(22px, 3vw, 32px);
+    }
+    section.block p { color: var(--muted); max-width: 70ch; }
+
+    footer {
+      border-top: 1px solid var(--stroke);
+      padding: 28px var(--pad);
+      color: var(--muted);
+      text-align: center;
+      background: rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 860px) {
+      .nav-inner { grid-template-columns: auto 1fr auto; }
+      .nav-links { justify-content: flex-start; overflow-x: auto; padding-bottom: 2px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" role="banner">
+    <div class="nav-inner">
+      <a href="#top" class="brand" aria-label="CreativePrep home">
+        <div class="logo" aria-hidden="true"></div>
+        <span>CreativePrep</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#community">Community</a>
+        <a href="#tutoring">Tutoring Program</a>
+        <a href="#schools">School Partnerships</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="#pricing" aria-label="Get started">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="hero">
+    <div class="hero-card" role="region" aria-label="Intro">
+      <span class="eyebrow">Made by high schoolers • For high schoolers</span>
+      <h1><strong>High School Made Simple</strong></h1>
+      <p><strong>AP Prep Platform + Free Tutoring And High School Community</strong></p>
+      <div class="btn-row" role="group" aria-label="Primary actions">
+        <a class="btn btn-primary" href="https://your-platform-link.example" target="_blank" rel="noopener">Try out the Test Prep platform for free</a>
+        <a class="btn btn-secondary" href="https://your-discord-link.example" target="_blank" rel="noopener">Join the CreativePrep Discord</a>
+      </div>
+    </div>
+  </main>
+
+  <section id="about" class="block">
+    <h2><strong>Supplement your entire high school journey right here</strong></h2>
+    <p><strong>Tired of not having accessible resources for your AP classes?</strong></p>
+    <p><strong>Don't want to pay for tutoring sessions?</strong></p>
+    <p><strong>Want to find or grow your extracurriculars, but don't have the reach for it?</strong></p>
+    <p style="font-size: 1.1em; font-weight: 700; margin-top: 1em;">There's a new way to get those resources, find free tutoring, accelerate your initiatives to a large audience, and join an opportunistic and driven community.</p>
+  </section>
+
+  <section id="community" class="block">
+    <h2>Community</h2>
+    <p>Give a quick overview of your Discord, weekly study sessions, channels, and how students get help fast. Include a join link and a few community stats.</p>
+  </section>
+
+  <section id="tutoring" class="block">
+    <h2>Tutoring Program</h2>
+    <p>Outline how to request a tutor, subjects covered, response times, and how you track quality. Consider FAQs and a student success highlight.</p>
+  </section>
+
+  <section id="schools" class="block">
+    <h2>School Partnerships</h2>
+    <p>Share options for school clubs, teacher bundles, and integrations. Add a contact button or email for partnerships.</p>
+  </section>
+
+  <section id="pricing" class="block">
+    <h2>Pricing</h2>
+    <p>Describe your subscription plans or one-time purchases. Include what’s free vs. paid and a small comparison grid if helpful.</p>
+  </section>
+
+  <footer>
+    © <span id="year"></span> CreativePrep. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (href.length > 1) {
+          const el = document.querySelector(href);
+          if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
